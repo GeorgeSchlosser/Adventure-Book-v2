@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import API from "../utils/API";
+import API from "../../utils/API";
 
 class Register extends Component {
   // Setting the component's initial state
@@ -8,11 +8,14 @@ class Register extends Component {
     lastName: "",
     userName: "",
     password: "",
+    confirmPassword: "",
     forms: "",
-	passwordLength: "",
-	welcome: "",
-	userNameTaken: ""
+    passwordLength: "",
+    passwordMatch: "",
+    welcome: "",
+    userNameTaken: ""
   };
+
 
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
@@ -39,50 +42,65 @@ class Register extends Component {
         forms: "Please fill out all of the forms. "
       });
     }
-	
-	if (this.state.password < 6) {
+
+    else if (this.state.password < 6) {
       this.setState({
         passwordLength: "Your password must be at least 6 characters."
       });
-    } 
+    }
 
-    API.saveUser({
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      userName: this.state.userName,
-      password: this.state.password
-    }).then(resp => {
-		if (resp.data !== null) {
-			console.log("Hi ")
-			this.setState({
-				welcome: "Thanks for registering.  You're all set to login."
-			})
-		} 
-		else{
-			this.setState({
-				userNameTaken: "Sorry, that user name is taken"
-			})
-		}
-	})
-     
-      .catch(err => console.log(err));
+    else if (this.state.password !== this.state.confirmPassword) {
+      this.setState({
+		passwordMatch: "Your passwords didn't match",
+		firstName: "",
+        lastName: "",
+        userName: "",
+        password: "",
+        confirmPassword: ""
+      });
+    } else {
+      API.saveUser({
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        userName: this.state.userName,
+        password: this.state.password
+      })
+        .then(resp => {
+          if (resp.data !== null) {
+            console.log("Hi ");
+            this.setState({
+              welcome: " You're all set to login."
+            });
+          } else {
+            this.setState({
+              userNameTaken: "Sorry, that user name is taken"
+            });
+          }
+        })
 
-    this.setState({
-      firstName: "",
-      lastName: "",
-      userName: "",
-	  password: ""
-	
-	});
-	setTimeout(
-		() => this.setState({
-			forms: "",
-			passwordLength: "",
-			welcome: "",
-			userNameTaken: ""
-		}),
-		2000
-	)};
+        .catch(err => console.log(err));
+
+      this.setState({
+        firstName: "",
+        lastName: "",
+        userName: "",
+        password: "",
+        confirmPassword: ""
+      });
+    }
+
+    setTimeout(
+      () =>
+        this.setState({
+          forms: "",
+          passwordLength: "",
+          welcome: "",
+          userNameTaken: "",
+          passwordMatch: ""
+        }),
+      5000
+    );
+  };
 
   render() {
     // Notice how each input has a `value`, `name`, and `onChange` prop
@@ -118,14 +136,22 @@ class Register extends Component {
             type="password"
             placeholder="Password"
           />
+          <input
+            value={this.state.confirmPassword}
+            name="confirmPassword"
+            onChange={this.handleInputChange}
+            type="confirmPassword"
+            placeholder="Confirm Password"
+          />
           <button onClick={this.handleFormSubmit}>Submit</button>
         </form>
-        <modal>
+        <p>
           {this.state.forms}
-		  {this.state.passwordLength}
-		  {this.state.welcome}
-		  {this.state.userNameTaken}
-        </modal>
+          {this.state.passwordLength}
+          {this.state.passwordMatch}
+          {this.state.welcome}
+          {this.state.userNameTaken}
+        </p>
       </div>
     );
   }

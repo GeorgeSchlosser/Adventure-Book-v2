@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
-import Register from "./components/Register"
-import Login from "./components/Login"
+import Register from "./components/RegisterLogin/Register";
+import Login from "./components/RegisterLogin/Login";
 import AdminDiv from "./components/AdminDiv";
 import Story from "./components/Story"
 
