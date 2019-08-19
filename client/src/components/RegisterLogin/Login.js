@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
+import "../RegisterLogin/style.css";
 
 class Login extends Component {
   // Setting the component's initial state
@@ -60,9 +61,10 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <p>Login</p>
-        <form className="form">
+        <p className="admin-font">Login</p>
+        <form className="pure-form pure-form-stacked centered-form">
           <input
+            className="form-input-centered"
             value={this.state.userName}
             name="userName"
             onChange={this.handleInputChange}
@@ -70,13 +72,14 @@ class Login extends Component {
             placeholder="User Name"
           />
           <input
+            className="form-input-centered"
             value={this.state.password}
             name="password"
             onChange={this.handleInputChange}
             type="password"
             placeholder="Password"
           />
-          <button onClick={this.handleFormSubmit}>Submit</button>
+          <button className="pure-button pure-button-primary" onClick={this.handleFormSubmit}>Submit</button>
         </form>
         <modal>
           {this.state.notFound}

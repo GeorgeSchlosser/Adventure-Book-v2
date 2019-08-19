@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
+import "../RegisterLogin/style.css";
 
 class Register extends Component {
   // Setting the component's initial state
@@ -105,10 +106,11 @@ class Register extends Component {
   render() {
     // Notice how each input has a `value`, `name`, and `onChange` prop
     return (
-      <div>
-        <p>Register</p>
-        <form className="form">
+      <div className="bg">
+        <p className="admin-font">Register</p>
+        <form className="pure-form pure-form-stacked centered-form">
           <input
+            className="form-input-centered"
             value={this.state.firstName}
             name="firstName"
             onChange={this.handleInputChange}
@@ -116,6 +118,7 @@ class Register extends Component {
             placeholder="First Name"
           />
           <input
+            className="form-input-centered"
             value={this.state.lastName}
             name="lastName"
             onChange={this.handleInputChange}
@@ -123,6 +126,7 @@ class Register extends Component {
             placeholder="Last Name"
           />
           <input
+            className="form-input-centered"
             value={this.state.userName}
             name="userName"
             onChange={this.handleInputChange}
@@ -130,6 +134,7 @@ class Register extends Component {
             placeholder="User Name"
           />
           <input
+            className="form-input-centered"
             value={this.state.password}
             name="password"
             onChange={this.handleInputChange}
@@ -137,14 +142,20 @@ class Register extends Component {
             placeholder="Password"
           />
           <input
+            className="form-input-centered"
             value={this.state.confirmPassword}
             name="confirmPassword"
             onChange={this.handleInputChange}
             type="confirmPassword"
             placeholder="Confirm Password"
           />
-          <button onClick={this.handleFormSubmit}>Submit</button>
+          <button className="pure-button pure-button-primary" onClick={this.handleFormSubmit}>Submit</button>
         </form>
+        
+  		 
+        <div className="bg"></div> 
+        
+
         <p>
           {this.state.forms}
           {this.state.passwordLength}
@@ -152,9 +163,8 @@ class Register extends Component {
           {this.state.welcome}
           {this.state.userNameTaken}
         </p>
-      </div>
-    );
-  }
+        </div>
+        )};
 }
 
 export default Register;
