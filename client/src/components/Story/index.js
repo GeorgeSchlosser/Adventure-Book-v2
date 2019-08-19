@@ -97,7 +97,7 @@ class Story extends Component {
             className="modal"
             show={this.state.isShowing}
             close={this.closeModalHandler}>
-              
+              <h3>{story.wrong_choice_result}</h3>
           </Modal>
         </div>
         // ||
