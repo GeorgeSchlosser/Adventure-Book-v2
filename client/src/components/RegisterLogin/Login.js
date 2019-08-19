@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import API from "../utils/API";
+import API from "../../utils/API";
 
 class Login extends Component {
   // Setting the component's initial state
@@ -7,7 +7,7 @@ class Login extends Component {
     userName: "",
     password: "",
     welcome: "",
-    notFound: ""
+    notFound: "",
   };
 
   handleInputChange = event => {
