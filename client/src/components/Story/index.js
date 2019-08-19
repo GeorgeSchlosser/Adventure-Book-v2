@@ -1,24 +1,46 @@
 import React, { Component } from "react";
+import Modal from '../Modal/Modal';
 import API from "../../utils/API";
 
 
 class Story extends Component {
-  
-    state = {
-      data : [],
+
+  // state = {
+  //   data : [],
+  //   dataIndex: 0,
+  //   // correctChoice: data[dataIndex].correct_choice
+  //   userChosePoorly: false
+
+  // }
+  constructor() {
+    super();
+
+    this.state = {
+      isShowing: false,
+      data: [],
       dataIndex: 0,
-      // correctChoice: data[dataIndex].correct_choice
-      userChosePoorly: false
-      
     }
+  }
 
   componentDidMount() {
     API.getFullStory().then(res => {
       this.setState({
         data: res.data
-      },()=>console.log(this.state.data))
+      }, () => console.log(this.state.data))
     })
   };
+
+  openModalHandler = () => {
+    this.setState({
+      isShowing: true
+    });
+  }
+
+  closeModalHandler = () => {
+    this.setState({
+      isShowing: false
+    });
+  }
 
   handleUserChoice = correct => {
     // alert("you clicked a button");
@@ -36,14 +58,15 @@ class Story extends Component {
     } else {
       // pop-up modal of wrong_choice_result
       // <WrongModal />
-      alert (story.wrong_choice_result)
-      this.setState({
-        userChosePoorly: true,
-        // when true show WrongModal
-      });
+      // alert(story.wrong_choice_result)
+      // this.setState({
+      //   userChosePoorly: true,
+      this.openModalHandler();
+      // });
+      
     }
 
-    
+
   };
 
   // this.props = {
@@ -65,17 +88,24 @@ class Story extends Component {
     return (
       story ?
         <div className="story">
+          { this.state.isShowing ? <div onClick={this.closeModalHandler} className="back-drop"></div> : null }
           <h4>{story.scene_text}</h4>
           <button onClick={() => this.handleUserChoice(story.correct_choice === "choice_a")}>{story.choice_a}</button>
           <button onClick={() => this.handleUserChoice(story.correct_choice === "choice_b")}>{story.choice_b}</button>
           {/* <button>{story.correct_choice}</button> */}
-        </div> 
+          <Modal
+            className="modal"
+            show={this.state.isShowing}
+            close={this.closeModalHandler}>
+              
+          </Modal>
+        </div>
         // ||
         // <WrongModal 
         // story/>
-      : <div></div>
+        : <div></div>
     )
-    
+
   }
 }
 
