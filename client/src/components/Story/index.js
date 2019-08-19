@@ -1,23 +1,34 @@
 import React, { Component } from "react";
+import ReactDOM from 'react-dom';
+import Modal from 'react-responsive-modal';
 import API from "../../utils/API";
 
 
 class Story extends Component {
-  
-    state = {
-      data : [],
-      dataIndex: 0,
-      // correctChoice: data[dataIndex].correct_choice
-      userChosePoorly: false
-      
-    }
+
+  state = {
+    data: [],
+    dataIndex: 0,
+    open: false
+    // correctChoice: data[dataIndex].correct_choice
+    // userChosePoorly: false
+
+  }
 
   componentDidMount() {
     API.getFullStory().then(res => {
       this.setState({
         data: res.data
-      },()=>console.log(this.state.data))
+      }, () => console.log(this.state.data))
     })
+  };
+
+  onOpenModal = () => {
+    this.setState({ open: true });
+  };
+
+  onCloseModal = () => {
+    this.setState({ open: false });
   };
 
   handleUserChoice = correct => {
@@ -36,14 +47,12 @@ class Story extends Component {
     } else {
       // pop-up modal of wrong_choice_result
       // <WrongModal />
-      alert (story.wrong_choice_result)
-      this.setState({
-        userChosePoorly: true,
-        // when true show WrongModal
-      });
+      alert(story.wrong_choice_result);
+      this.onOpenModal();
+
     }
 
-    
+
   };
 
   // this.props = {
@@ -59,6 +68,7 @@ class Story extends Component {
 
   render() {
     let story = this.state.data[this.state.dataIndex];
+    const { open } = this.state;
     // let crrctChoice = story.;
     // console.log(crrctChoice); 
 
@@ -69,13 +79,17 @@ class Story extends Component {
           <button onClick={() => this.handleUserChoice(story.correct_choice === "choice_a")}>{story.choice_a}</button>
           <button onClick={() => this.handleUserChoice(story.correct_choice === "choice_b")}>{story.choice_b}</button>
           {/* <button>{story.correct_choice}</button> */}
-        </div> 
+          <Modal open={open} onClose={this.onCloseModal} center>
+            <h2>Simple centered modal</h2>
+          </Modal>
+
+        </div>
         // ||
         // <WrongModal 
         // story/>
-      : <div></div>
+        : <div></div>
     )
-    
+
   }
 }
 
