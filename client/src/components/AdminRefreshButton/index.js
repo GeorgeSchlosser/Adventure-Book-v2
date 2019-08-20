@@ -10,7 +10,8 @@ class AdminRefreshButton extends Component {
   render() {
   return (
     <button
-      id="admin-refresh" 
+      id="admin-refresh"
+      type="submit"
       className="pure-button pure-button-success">
         Refresh Console
     </button>

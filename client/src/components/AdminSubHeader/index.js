@@ -3,7 +3,7 @@ import "./style.css";
 
 const AdminSubHeader = (props) => {
   return (
-    <h2>{ props.children }</h2>
+    <h2 className="admin-subheader">{ props.children }</h2>
   );
 };
 

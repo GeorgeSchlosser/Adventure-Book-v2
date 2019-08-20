@@ -1,9 +1,16 @@
 #cy {
-    width: 75%;
+    width: 70%;
     height: 100%;
-    margin: 3em;
-    overflow: clip;
-    /* border: 1px solid black; */
-    /* display: block; */
+    margin: 0em auto;
     position: absolute;
+}
+
+#zoom-input-form {
+    display: block;
+    border: none;
+    text-align: center;
+}
+
+.model-controls {
+    text-align: center;
 }

@@ -1,6 +1,7 @@
-import React, { Component, useCallback } from "react";
-import Dropzone, { useDropzone } from "react-dropzone";
+import React, { Component } from "react";
+import Dropzone from "react-dropzone";
 import AdminUploadButton from "../AdminUploadButton";
+import "./style.css";
  
 // Container for holding uploaded file contents
 class AdminDropZone extends Component {
@@ -39,38 +40,5 @@ class AdminDropZone extends Component {
     );
   }
 }
-// function AdminDropZone() {
-
-//   const onDrop = useCallback(acceptedFiles => {
-//     const reader = new FileReader();
-   
-//       reader.onabort = () => console.log('file reading was aborted');
-//       reader.onerror = () => console.log('file reading has failed');
-//       reader.onload = () => {
-//         const binaryStr = reader.result;
-//         // console.log(binaryStr);
-//         jsonData = JSON.parse(binaryStr);
-//       }
-   
-//       acceptedFiles.forEach(file => reader.readAsBinaryString(file));
-//   }, []);
-  
-//   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop});
-   
-//   return (
-//     <div id="ugly-hack-need-to-fix">
-//       <div {...getRootProps()} id="dropzone">
-//         <input {...getInputProps({ multiple: false })} id="drop-input" />
-//         {
-//           isDragActive ?
-//             <p>Drop new game file here ...</p> :
-//             <p>Drag 'n' drop game file here, or click to select file</p>
-//         }
-        
-//       </div>
-//       <button id="upload-button" className="pure-button pure-button-primary" onClick={ API.uploadStory(jsonData) }>Upload File</button>
-//     </div>
-//   )
-// }
 
 export default AdminDropZone;
