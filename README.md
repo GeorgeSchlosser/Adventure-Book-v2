@@ -55,7 +55,7 @@ Write your own custom text-based adventures and upload them using the "Game Mast
 
 ### Current JSON Schema
 Version 1
-```
+```json
 { "story":
 	[
 		{
