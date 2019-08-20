@@ -41,8 +41,7 @@ class Login extends Component {
     API.getUser(`${this.state.userName}/${this.state.password}`)
       .then(resp => {
        
-        
-       if (resp.data === null) {
+        if (resp.data === null) {
           console.log("not found");
           this.setState({
             notFound:

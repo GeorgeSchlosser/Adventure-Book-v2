@@ -44,9 +44,9 @@ class Register extends Component {
     } else if (this.state.password !== this.state.confirmPassword) {
       this.setState({
         passwordMatch: "Your passwords didn't match",
-        firstName: "",
-        lastName: "",
-        userName: "",
+        // firstName: "",
+        // lastName: "",
+        // userName: "",
         password: "",
         confirmPassword: ""
       });
@@ -83,14 +83,6 @@ class Register extends Component {
           }),
         3000
       );
-
-      this.setState({
-        firstName: "",
-        lastName: "",
-        userName: "",
-        password: "",
-        confirmPassword: ""
-      });
     }
 
     setTimeout(
