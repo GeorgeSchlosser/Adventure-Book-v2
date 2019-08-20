@@ -16,13 +16,9 @@ class Register extends Component {
     userNameTaken: ""
   };
 
-
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
     let { name, value } = event.target;
-    if (name === "password") {
-      value = value.substring(0, 15);
-    }
     // Updating the input's state
     this.setState({
       [name]: value
@@ -39,20 +35,16 @@ class Register extends Component {
       !this.state.password
     ) {
       this.setState({
-        forms: "Please fill out all of the forms. "
+        forms: "Please fill out all of the forms "
       });
-    }
-
-    else if (this.state.password < 6) {
+    } else if (this.state.password < 6) {
       this.setState({
-        passwordLength: "Your password must be at least 6 characters."
+        passwordLength: "Your password must be at least 6 characters"
       });
-    }
-
-    else if (this.state.password !== this.state.confirmPassword) {
+    } else if (this.state.password !== this.state.confirmPassword) {
       this.setState({
-		passwordMatch: "Your passwords didn't match",
-		firstName: "",
+        passwordMatch: "Your passwords didn't match",
+        firstName: "",
         lastName: "",
         userName: "",
         password: "",
@@ -69,16 +61,28 @@ class Register extends Component {
           if (resp.data !== null) {
             console.log("Hi ");
             this.setState({
-              welcome: " You're all set to login."
+              welcome: "Thanks for registering! You're all set to login"
             });
+            setTimeout(() => this.props.history.push("/login"), 2000);
           } else {
             this.setState({
               userNameTaken: "Sorry, that user name is taken"
             });
           }
         })
-
         .catch(err => console.log(err));
+
+      setTimeout(
+        () =>
+          this.setState({
+            forms: "",
+            passwordLength: "",
+            welcome: "",
+            userNameTaken: "",
+            passwordMatch: ""
+          }),
+        3000
+      );
 
       this.setState({
         firstName: "",
@@ -98,12 +102,11 @@ class Register extends Component {
           userNameTaken: "",
           passwordMatch: ""
         }),
-      5000
+      3000
     );
   };
 
   render() {
-    // Notice how each input has a `value`, `name`, and `onChange` prop
     return (
       <div>
         <p>Register</p>
@@ -140,7 +143,7 @@ class Register extends Component {
             value={this.state.confirmPassword}
             name="confirmPassword"
             onChange={this.handleInputChange}
-            type="confirmPassword"
+            type="password"
             placeholder="Confirm Password"
           />
           <button onClick={this.handleFormSubmit}>Submit</button>

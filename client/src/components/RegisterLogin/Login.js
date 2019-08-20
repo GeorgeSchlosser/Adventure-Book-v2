@@ -7,15 +7,13 @@ class Login extends Component {
     userName: "",
     password: "",
     welcome: "",
-    notFound: "",
+    notFound: ""
   };
 
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
     let { name, value } = event.target;
-    if (name === "password") {
-      value = value.substring(0, 15);
-    }
+    
     // Updating the input's state
     this.setState({
       [name]: value
@@ -26,18 +24,44 @@ class Login extends Component {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
 
+    if (!this.state.userName || !this.state.password) {
+      this.setState({
+        notFound:
+        "Sorry, that information does not match our records. Please try again."
+      });
+      setTimeout(
+        () =>
+          this.setState({
+            notFound: "",
+          }),
+        2000)
+        return
+      } 
+
     API.getUser(`${this.state.userName}/${this.state.password}`)
       .then(resp => {
-        if (resp.data === null) {
+       
+        
+       if (resp.data === null) {
           console.log("not found");
           this.setState({
             notFound:
-              "Sorry, that information does not match our records. Please try again."
+              "Invalid user name or password. Please try again."
           });
-        } else {
+        } 
+        else {
           this.setState({
             welcome: "Welcome, we hope you enjoy the story"
           });
+          setTimeout(
+            () => (
+              this.setState({
+                welcome: "",
+                notFound: ""
+              }),
+            this.props.history.push('/story')),
+            2000
+          );
         }
       })
       .catch(err => console.log(err));
@@ -78,10 +102,10 @@ class Login extends Component {
           />
           <button onClick={this.handleFormSubmit}>Submit</button>
         </form>
-        <modal>
+        <p>
           {this.state.notFound}
           {this.state.welcome}
-        </modal>
+        </p>
       </div>
     );
   }
