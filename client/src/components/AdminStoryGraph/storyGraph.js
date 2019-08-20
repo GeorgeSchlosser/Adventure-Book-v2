@@ -1,6 +1,14 @@
 import cytoscape from 'cytoscape';
 
-export default (seeds) => {
+export default (seeds, layout, zoomOpt) => {
+
+if(!layout) {
+    layout = "breadthfirst"
+}
+
+if(!zoomOpt) {
+    zoomOpt = false;
+}
 
 var graphElements = [];
     for(let i=0; i<seeds.length; i++){
@@ -76,7 +84,7 @@ var graphElements = [];
         zoom: (0.5),
         minZoom: (2.0),
         maxZoom: (0.25),
-        userZoomingEnabled: false,
+        userZoomingEnabled: zoomOpt,
         elements: graphElements,
 
         // the stylesheet for the graph
@@ -104,7 +112,7 @@ var graphElements = [];
 
         // Node layout options
         "layout": {
-            "name": "breadthfirst",
+            "name": layout, //breadthfirst
             "fit": true,
             "directed": true,
             "animate": false,

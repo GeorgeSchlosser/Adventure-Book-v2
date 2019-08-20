@@ -6,11 +6,7 @@ const db = require("../../database/models");
 const storySeeds = require("../../database/storySeeds");
 
 // Setup body-parser middle-ware
-// app.use(express.json());
-
 app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(bodyParser.json());
-// app.use(bodyParser.text());
 
 // API route used to retrieve full story, mainly just used for testing
 router
@@ -19,14 +15,6 @@ router
         // Method used to prevent unauthorized seeding of production db
         // We can setup a more unique key in a secure environment variable down the road
         if(req.params.key === "12345"){
-        
-            // Empty Story collection
-            db.Story.remove({}, function(err) {
-                console.log("Existing story collection cleared.");
-                if(err){
-                    console.log(err);
-                }
-            });
 
             // Create a default admin user if not found in DB
             db.User
@@ -48,15 +36,17 @@ router
                 });
             
             // Bulk inserts storySeeds array as defined in /database/storySeeds.js
-            // Can be adapted to accept json in req.body, empty collection, and re-seed (baby framework for story creation)
-            db.Story
-                .insertMany(storySeeds, function(err, docs) {
-                    if(err){
-                        console.log(err);
-                    } else {
-                        console.log(`Story collection successfully created!`);
-                    }
-                });
+            db.Story.db.collection('stories').drop({}).then(() => {
+                db.Story
+                    .insertMany(storySeeds, { ordered: true },  function(err, docs) {
+                        if(err){
+                            console.log(err);
+                        } else {
+                            console.log(`Story collection successfully created!`);
+                        }
+                    });
+                }
+            );
             res.send("Database seeded successfully!");
         } else {
             res.send("Database seeding failed.");
@@ -68,12 +58,12 @@ router
     .post((req, res) => {    
         if(req.params.key === "12345"){
             res.send("File upload complete!");
-            console.log(typeof(req.body));
+            // console.log(typeof(req.body));
             let storyFile = req.body;
-            console.log(storyFile.story);
+            // console.log(storyFile.story);
             // Empty Story collection
             db.Story.remove({}, function(err) {
-                console.log("Existing story collection cleared.");
+                // console.log("Existing story collection cleared.");
                 if(err){
                     console.log(err);
                 }
@@ -81,7 +71,7 @@ router
 
             // Seed new game collection
             db.Story
-                .insertMany(storyFile.story, function(err, docs) {
+                .insertMany(storyFile.story, { ordered: true }, function(err, docs) {
                     if(err){
                         console.log(err);
                     } else {

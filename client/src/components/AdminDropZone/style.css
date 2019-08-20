@@ -6,3 +6,28 @@
     font-weight: bolder;
     font-size: 1.2em;
 }
+
+.dropzone {
+    position: relative;
+    border-width: 5px;
+    border-style: dashed;
+    border-radius: 5px;
+    border-color: lightgray;
+    margin: 1em;
+    padding: 1em;
+    height: 100%;
+}
+
+#drop-input {
+    position: absolute; 
+    display: table; 
+}
+
+.dropzone p {
+    /* margin-top: 25%; */
+    display: block; 
+    text-align: center;
+    color: lightgrey;
+    font-weight: bolder;
+    font-size: 1.2em;
+}
