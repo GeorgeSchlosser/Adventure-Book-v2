@@ -59,7 +59,7 @@ Version 1
 { "story":
 	[
 		{
-			"id": INTEGER
+			"id": INTEGER,
 			"scene_title": STRING,
 			"scene_text": STRING,
 			"next_scene": INTEGER,
