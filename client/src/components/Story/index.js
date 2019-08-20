@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Modal from '../Modal/Modal';
 import API from "../../utils/API";
+import './index.css';
 
 
 class Story extends Component {
