@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 
 class Register extends Component {
-  // Setting the component's initial state
   state = {
     firstName: "",
     lastName: "",
@@ -17,16 +16,13 @@ class Register extends Component {
   };
 
   handleInputChange = event => {
-    // Getting the value and name of the input which triggered the change
     let { name, value } = event.target;
-    // Updating the input's state
     this.setState({
       [name]: value
     });
   };
 
   handleFormSubmit = event => {
-    // Preventing the default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
     if (
       !this.state.firstName ||
@@ -44,9 +40,6 @@ class Register extends Component {
     } else if (this.state.password !== this.state.confirmPassword) {
       this.setState({
         passwordMatch: "Your passwords didn't match",
-        // firstName: "",
-        // lastName: "",
-        // userName: "",
         password: "",
         confirmPassword: ""
       });
@@ -59,7 +52,6 @@ class Register extends Component {
       })
         .then(resp => {
           if (resp.data !== null) {
-            console.log("Hi ");
             this.setState({
               welcome: "Thanks for registering! You're all set to login"
             });
@@ -83,6 +75,14 @@ class Register extends Component {
           }),
         3000
       );
+
+      this.setState({
+        firstName: "",
+        lastName: "",
+        userName: "",
+        password: "",
+        confirmPassword: ""
+      });
     }
 
     setTimeout(

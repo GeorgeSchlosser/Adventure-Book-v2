@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 
 class Login extends Component {
-  // Setting the component's initial state
   state = {
     userName: "",
     password: "",
@@ -11,17 +10,15 @@ class Login extends Component {
   };
 
   handleInputChange = event => {
-    // Getting the value and name of the input which triggered the change
     let { name, value } = event.target;
     
-    // Updating the input's state
     this.setState({
       [name]: value
     });
   };
 
   handleFormSubmit = event => {
-    // Preventing the default behavior of the form submit (which is to refresh the page)
+   
     event.preventDefault();
 
     if (!this.state.userName || !this.state.password) {
@@ -42,7 +39,6 @@ class Login extends Component {
       .then(resp => {
        
         if (resp.data === null) {
-          console.log("not found");
           this.setState({
             notFound:
               "Invalid user name or password. Please try again."
@@ -61,7 +57,7 @@ class Login extends Component {
             this.props.history.push('/story')),
             2000
           );
-        }
+        };
       })
       .catch(err => console.log(err));
 
@@ -107,7 +103,7 @@ class Login extends Component {
         </p>
       </div>
     );
-  }
-}
+  };
+};
 
 export default Login;
