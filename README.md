@@ -14,7 +14,7 @@ A MERN-based Choose-Your-Own-Adventure web application that strives to engage th
 * [MongoDb](https://www.mongodb.com/)
 * [NodeJS](https://nodejs.org/)
 * [NPM](https://www.npmjs.com/products)
-* [Git](https://github.com/) (optional)
+* [Git](https://github.com/) (*optional*)
 
 ## Installation
 
@@ -41,9 +41,9 @@ The following API routes are exposed when running the React application locally.
 |-----------------------------------|-----|--------------------------------------|
 |<hostname>/api/register            | POST| Registers a new user object to the userCollection in the database|
 |<hostname>/api/login               | GET | Registers a new user object to the userCollection in the database|
-|<hostname>/api/seed/<key>          | GET | Seeds database with default story data|
-|<hostname>/api/seed/<key>          | POST| Seeds database with new game data (sent as JSON)|
-|<hostname>/api/stats               | GET | Returns database stats as JSON|
+|<hostname>/api/seed/\<key>          | GET | Seeds database with default story data; Key should match passkey as defined in /routes/seed.js|
+|<hostname>/api/seed/\<key>          | POST| Seeds database with new game data (sent as JSON) Key should match passkey as defined in /routes/seed.js|
+|<hostname>/api/stats               | GET | Returns current database stats as JSON|
 |<hostname>/api/story/<scene number>| GET | Returns requested scene/chapter as JSON. Scene number corresponds to `id` field of scene object.|
 |<hostname>/api/story/all           | GET | Returns the complete game decision tree as JSON data|
 
@@ -70,7 +70,7 @@ the [cytoscape] javascript library, which can aid:
 |choice_a|  *YES*         | Text representing a possible user choice; Displayed in a button
 |choice_b|  *YES*         | Text representing a possible user choice; Displayed in a button
 |wrong_choice_result| *YES*| If a users picks an incorrect choice (that which does not match `correct_choice), this text will be displayed to the user as the story ends.
-|image_url| *YES*          | An image per scene may be copied into /client/public/images. Each scene may specify an image to be display along with the story. Example `"image_url": "./client/public/images/chapter1.jpg`
+|image_url| *YES*          | An image per scene may be copied into /client/public/images. Each scene may specify an image to be display along with the story. Example `"image_url": "./client/public/images/chapter1.jpg"`
 
 ### Current JSON Schema
 Version 1
