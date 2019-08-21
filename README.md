@@ -8,6 +8,7 @@ A MERN-based Choose-Your-Own-Adventure web application that strives to engage th
 * [API Documentation](#api-documentation)
 * [Game Master's Console](#game-master's-console)
 * [Libraries Used](#libraries-used)
+* [Future Development](#future-development)
 
 ## Prerequisites
 * [MongoDb](https://www.mongodb.com/)
@@ -38,28 +39,32 @@ The following API routes are exposed when running the React application locally.
 
 |Route|Method|Description|
 |-----------------------------------|-----|--------------------------------------|
-|<hostname>/api/register            | POST | Registers a new user object to the userCollection in the database|
+|<hostname>/api/register            | POST| Registers a new user object to the userCollection in the database|
 |<hostname>/api/login               | GET | Registers a new user object to the userCollection in the database|
-|<hostname>/api/seed/<key>          | GET |Seeds database with default story data|
-|<hostname>/api/seed/<key>          | POST |Seeds database with new game data (sent as JSON)|
+|<hostname>/api/seed/<key>          | GET | Seeds database with default story data|
+|<hostname>/api/seed/<key>          | POST| Seeds database with new game data (sent as JSON)|
 |<hostname>/api/stats               | GET | Returns database stats as JSON|
 |<hostname>/api/story/<scene number>| GET | Returns requested scene/chapter as JSON. Scene number corresponds to `id` field of scene object.|
 |<hostname>/api/story/all           | GET | Returns the complete game decision tree as JSON data|
 
 ## Game Master's Console
-Write your own custom text-based adventures and upload them using the "Game Master's Console".
+Write your own custom text-based adventures and upload them using the "Game Master's Console". The console utilizes
+the [cytoscape] javascript library, which can aid:
+* Viewing the overall 'shape' of a story-board
+* Spotting inconsistencies or logical errors in the story progression
+* Identify errors in uploaded story json which may not be immediately apparent in testing 
 
-* Supported File Types: TXT, JSON
-* Character Encoding: UTF-8, ANSI
-
+### Usage Notes
+* Supported File Types: txt, json
+* Supported Character Encoding: UTF-8, ANSI
 
 ### Current JSON Schema
 Version 1
-```
+```json
 { "story":
 	[
 		{
-			"id": INTEGER
+			"id": INTEGER,
 			"scene_title": STRING,
 			"scene_text": STRING,
 			"next_scene": INTEGER,
@@ -88,7 +93,12 @@ Version 1
 * [if-env](https://www.npmjs.com/package/if-env) - Simplify npm scripts with "if-env ... && npm run this || npm run that"
 * [mongoose](https://www.npmjs.com/package/mongoose) - Mongoose MongoDB ODM
 
-### Upcoming Version (with support for 2+ scene choices)
+## Future Development
+
+* Extended metadata for uploaded games
+* Support for 2+ choices per scene
+* Support for background music/fx that accompany each scene
+* Support for a game "splash" screen that appears at the start of the game progression
 
 ```json
 {
@@ -103,7 +113,7 @@ Version 1
         ]
 
     },    
-    "seeds":
+    "story":
         "[
             {
                 "id": INTEGER,
@@ -112,6 +122,7 @@ Version 1
                 "next_scene": STRING,
                 "wrong_choice_result": STRING,
                 "image_file": STRING,
+                "bg_sound": STRING,
                 "choices": [
                     STRING
                 ]
