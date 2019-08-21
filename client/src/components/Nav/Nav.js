@@ -3,7 +3,7 @@ import React from "react";
 function Nav() {
   return (
     <div className="pure-menu pure-menu-horizontal nav">
-      <a href="#" className="pure-menu-heading pure-menu-link">
+      <a className="pure-menu-heading">
         Adventure Book
       </a>
       <ul className="pure-menu-list">
