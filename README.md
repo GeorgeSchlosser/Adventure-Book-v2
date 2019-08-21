@@ -58,9 +58,23 @@ the [cytoscape] javascript library, which can aid:
 * Supported File Types: txt, json
 * Supported Character Encoding: UTF-8, ANSI
 
+### Uploaded Story JSON Definitions
+|Key    |   Required    |   Definition|
+|-------|---------------|-------------|
+|story  |   *YES*         | Uploaded JSON must consist of a single object with a key named "story" having a value of an array of objects. Each object in the array represents a single game 'scene' or 'chapter'
+|id     |   *YES*         | The id is the primary identifier for each scene in a story
+|scene_title|*YES*        | The scene_title may be shown at the top of each scene as a user progresses through the story
+|scene_text| *YES*        | The scene_text holds the main text of each scene
+|next_scene| *YES*        | The next_scene holds a number that matches the `id` of the next scene. Players may progress to the next scene if their choice is correct.
+|correct_choice| *YES*    | If a user picks the `correct_choice` for a given scene, they will progress to the next scene. Example: `"correct_choice": "choice_a"`
+|choice_a|  *YES*         | Text representing a possible user choice; Displayed in a button
+|choice_b|  *YES*         | Text representing a possible user choice; Displayed in a button
+|wrong_choice_result| *YES*| If a users picks an incorrect choice (that which does not match `correct_choice), this text will be displayed to the user as the story ends.
+|image_url| *YES*          | An image per scene may be copied into /client/public/images. Each scene may specify an image to be display along with the story. Example `"image_url": "./client/public/images/chapter1.jpg`
+
 ### Current JSON Schema
 Version 1
-```json
+```
 { "story":
 	[
 		{
@@ -100,7 +114,7 @@ Version 1
 * Support for background music/fx that accompany each scene
 * Support for a game "splash" screen that appears at the start of the game progression
 
-```json
+```
 {
     "info": {
         "game_title": STRING,
