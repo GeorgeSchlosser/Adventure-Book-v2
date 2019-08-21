@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Modal from '../Modal/Modal';
 import API from "../../utils/API";
+import "./style.css";
 
 
 class Story extends Component {
@@ -63,7 +64,7 @@ class Story extends Component {
       //   userChosePoorly: true,
       this.openModalHandler();
       // });
-      
+
     }
 
 
@@ -88,8 +89,12 @@ class Story extends Component {
     return (
       story ?
         <div className="story">
-          { this.state.isShowing ? <div onClick={this.closeModalHandler} className="back-drop"></div> : null }
-          <h4>{story.scene_text}</h4>
+          {this.state.isShowing ? <div onClick={this.closeModalHandler} className="back-drop"></div> : null}
+          <div className="pure-g">
+            <div className="pure-u-md-1-4"></div>
+            <div className="pure-u-md-1-2 pure-u-sm-1"><h4>{story.scene_text}</h4></div>
+            <div className="pure-u-md-1-4"></div>
+          </div>
           <button onClick={() => this.handleUserChoice(story.correct_choice === "choice_a")}>{story.choice_a}</button>
           <button onClick={() => this.handleUserChoice(story.correct_choice === "choice_b")}>{story.choice_b}</button>
           {/* <button>{story.correct_choice}</button> */}
@@ -97,7 +102,7 @@ class Story extends Component {
             className="modal"
             show={this.state.isShowing}
             close={this.closeModalHandler}>
-              <h3>{story.wrong_choice_result}</h3>
+            <h3>{story.wrong_choice_result}</h3>
           </Modal>
         </div>
         // ||
