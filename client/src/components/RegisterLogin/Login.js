@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
-
 class Login extends Component {
   state = {
     userName: "",
@@ -8,7 +7,6 @@ class Login extends Component {
     welcome: "",
     notFound: ""
   };
-
   handleInputChange = event => {
     let { name, value } = event.target;
     
@@ -16,11 +14,9 @@ class Login extends Component {
       [name]: value
     });
   };
-
   handleFormSubmit = event => {
    
     event.preventDefault();
-
     if (!this.state.userName || !this.state.password) {
       this.setState({
         notFound:
@@ -34,7 +30,6 @@ class Login extends Component {
         2000)
         return
       } 
-
     API.getUser(`${this.state.userName}/${this.state.password}`)
       .then(resp => {
        
@@ -60,7 +55,6 @@ class Login extends Component {
         };
       })
       .catch(err => console.log(err));
-
     this.setState({
       userName: "",
       password: "",
@@ -75,13 +69,13 @@ class Login extends Component {
       2000
     );
   };
-
   render() {
     return (
       <div>
-        <p>Login</p>
-        <form className="form">
+        <p className="admin-font">Login</p>
+        <form className="pure-form pure-form-stacked centered-form">
           <input
+            className="form-input-centered"
             value={this.state.userName}
             name="userName"
             onChange={this.handleInputChange}
@@ -89,13 +83,14 @@ class Login extends Component {
             placeholder="User Name"
           />
           <input
+            className="form-input-centered"
             value={this.state.password}
             name="password"
             onChange={this.handleInputChange}
             type="password"
             placeholder="Password"
           />
-          <button onClick={this.handleFormSubmit}>Submit</button>
+          <button className="pure-button pure-button-primary" onClick={this.handleFormSubmit}>Submit</button>
         </form>
         <p>
           {this.state.notFound}
@@ -105,5 +100,4 @@ class Login extends Component {
     );
   };
 };
-
 export default Login;

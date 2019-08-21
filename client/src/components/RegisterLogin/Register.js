@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
-
 class Register extends Component {
   state = {
     firstName: "",
@@ -14,14 +13,12 @@ class Register extends Component {
     welcome: "",
     userNameTaken: ""
   };
-
   handleInputChange = event => {
     let { name, value } = event.target;
     this.setState({
       [name]: value
     });
   };
-
   handleFormSubmit = event => {
     event.preventDefault();
     if (
@@ -63,7 +60,6 @@ class Register extends Component {
           }
         })
         .catch(err => console.log(err));
-
       setTimeout(
         () =>
           this.setState({
@@ -75,7 +71,6 @@ class Register extends Component {
           }),
         3000
       );
-
       this.setState({
         firstName: "",
         lastName: "",
@@ -84,7 +79,6 @@ class Register extends Component {
         confirmPassword: ""
       });
     }
-
     setTimeout(
       () =>
         this.setState({
@@ -97,13 +91,13 @@ class Register extends Component {
       3000
     );
   };
-
   render() {
     return (
-      <div>
-        <p>Register</p>
-        <form className="form">
+      <div className="bg">
+        <p className="admin-font">Register</p>
+        <form className="pure-form pure-form-stacked centered-form">
           <input
+            className="form-input-centered"
             value={this.state.firstName}
             name="firstName"
             onChange={this.handleInputChange}
@@ -111,6 +105,7 @@ class Register extends Component {
             placeholder="First Name"
           />
           <input
+            className="form-input-centered"
             value={this.state.lastName}
             name="lastName"
             onChange={this.handleInputChange}
@@ -118,6 +113,7 @@ class Register extends Component {
             placeholder="Last Name"
           />
           <input
+            className="form-input-centered"
             value={this.state.userName}
             name="userName"
             onChange={this.handleInputChange}
@@ -125,6 +121,7 @@ class Register extends Component {
             placeholder="User Name"
           />
           <input
+            className="form-input-centered"
             value={this.state.password}
             name="password"
             onChange={this.handleInputChange}
@@ -132,6 +129,7 @@ class Register extends Component {
             placeholder="Password"
           />
           <input
+            className="form-input-centered"
             value={this.state.confirmPassword}
             name="confirmPassword"
             onChange={this.handleInputChange}
@@ -151,5 +149,4 @@ class Register extends Component {
     );
   }
 }
-
 export default Register;
