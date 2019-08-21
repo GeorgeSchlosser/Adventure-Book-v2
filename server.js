@@ -19,7 +19,14 @@ const app = express();
 
 // If deployed, use the deployed database. Otherwise use the local storydb database
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/storydb";
-mongoose.connect(MONGODB_URI);
+// mongoose.connect(MONGODB_URI);
+// Or using promises
+mongoose.connect(MONGODB_URI).then(
+
+  () => { /** ready to use. The `mongoose.connect()` promise resolves to mongoose instance. */ 
+  console.log("db connection successful")},
+  err => { /** handle initial connection error */ console.log("db connection unsuccessful", err)}
+);
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
