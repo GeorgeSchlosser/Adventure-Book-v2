@@ -92,11 +92,21 @@ class Story extends Component {
           {this.state.isShowing ? <div onClick={this.closeModalHandler} className="back-drop"></div> : null}
           <div className="pure-g">
             <div className="pure-u-md-1-4"></div>
-            <div className="pure-u-md-1-2 pure-u-sm-1"><h4>{story.scene_text}</h4></div>
+            <div className="pure-u-md-1-2 pure-u-sm-1">
+              <h4>{story.scene_text}</h4>
+            </div>
             <div className="pure-u-md-1-4"></div>
           </div>
-          <button onClick={() => this.handleUserChoice(story.correct_choice === "choice_a")}>{story.choice_a}</button>
-          <button onClick={() => this.handleUserChoice(story.correct_choice === "choice_b")}>{story.choice_b}</button>
+          <div className="pure-g">
+            <div>
+
+            </div>
+            <div >
+              <button onClick={() => this.handleUserChoice(story.correct_choice === "choice_a")}>{story.choice_a}</button>
+              <button onClick={() => this.handleUserChoice(story.correct_choice === "choice_b")}>{story.choice_b}</button>
+            </div>
+          </div>
+
           {/* <button>{story.correct_choice}</button> */}
           <Modal
             className="modal"
