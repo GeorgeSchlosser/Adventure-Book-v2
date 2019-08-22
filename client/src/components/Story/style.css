@@ -1,6 +1,12 @@
-h4 {
+h1 {
   font-family: 'Almendra', serif;
   
   overflow-y: scroll;
     
+}
+
+.adv-btn {
+  font-family: 'Cormorant', serif;
+  background-color: #628185;
+  color: white
 }

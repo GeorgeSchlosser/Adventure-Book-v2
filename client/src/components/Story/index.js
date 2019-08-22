@@ -93,18 +93,23 @@ class Story extends Component {
           <div className="pure-g">
             <div className="pure-u-md-1-4"></div>
             <div className="pure-u-md-1-2 pure-u-sm-1">
-              <h4>{story.scene_text}</h4>
+              <h1>{story.scene_text}</h1>
             </div>
             <div className="pure-u-md-1-4"></div>
           </div>
           <div className="pure-g">
-            <div>
-
+            <div className="pure-u-md-1-4"></div>
+            <div className="pure-u-md-1-2 pure-u-sm-1">
+              <button className="pure-button adv-btn" onClick={() => this.handleUserChoice(story.correct_choice === "choice_a")}>{story.choice_a}</button>
             </div>
-            <div >
-              <button onClick={() => this.handleUserChoice(story.correct_choice === "choice_a")}>{story.choice_a}</button>
-              <button onClick={() => this.handleUserChoice(story.correct_choice === "choice_b")}>{story.choice_b}</button>
+            <div className="pure-u-md-1-4"></div>
+          </div>
+          <div className="pure-g">
+            <div className="pure-u-md-1-4"></div>
+            <div className="pure-u-md-1-2 pure-u-sm-1">
+              <button className="pure-button adv-btn" onClick={() => this.handleUserChoice(story.correct_choice === "choice_b")}>{story.choice_b}</button>
             </div>
+            <div className="pure-u-md-1-4"></div>
           </div>
 
           {/* <button>{story.correct_choice}</button> */}
