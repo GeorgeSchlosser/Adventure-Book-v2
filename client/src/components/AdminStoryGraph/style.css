@@ -14,3 +14,7 @@
 .model-controls {
     text-align: center;
 }
+
+.pure-checkbox {
+    margin-right: 1em;
+}

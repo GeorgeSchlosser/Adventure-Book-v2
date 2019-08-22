@@ -3,7 +3,7 @@ import "./style.css";
 
 const AdminHeader = (props) => {
   return (
-    <h1>{ props.children }</h1>
+    <h2 className="adminHead">{ props.children }</h2>
   );
 };
 

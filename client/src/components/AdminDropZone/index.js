@@ -30,7 +30,7 @@ class AdminDropZone extends Component {
               <input {...getInputProps({ multiple: false })} />
               <p className="dropzone-text">Drag and drop a file here, or click to select a file</p>
             </div>
-            <aside>
+            <aside className="file-selection">
               File selected: <br/> { files }
             </aside>
             <AdminUploadButton selectedFile={ this.state.files[0] }/>
