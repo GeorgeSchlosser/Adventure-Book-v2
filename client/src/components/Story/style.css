@@ -1,12 +1,12 @@
 h1 {
   font-family: 'Almendra', serif;
-  
+  color: white;
   overflow-y: scroll;
     
 }
 
 .adv-btn {
   font-family: 'Cormorant', serif;
-  background-color: #628185;
+  background-color: #646C42;
   color: white
 }
