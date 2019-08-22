@@ -1,26 +1,30 @@
 import React, { Component } from 'react';
 import API from "../../utils/API";
+import AdminRefreshButton from "../AdminRefreshButton";
 import "./style.css";
 
 class AdminStatsTable extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      storySize: 0,
+      registeredUsers: 0,
+      globalWins: 0,
+      storyCollectionSize: 0,
+      userCollectionSize: 0
+    };
+  }
 
-  state = {
-    storySize: 0,
-    registeredUsers: 0,
-    globalWins: 0,
-    storyCollectionSize: 0,
-    userCollectionSize: 0
-  };
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     // Store dbStat object in state
     API.getStats().then(res => {
-      this.setState({
+      this.setState(prevState => ({
       storySize: res.data.storySize,
       registeredUsers: res.data.registeredUsers,
       globalWins: res.data.globalWins,
       storyCollectionSize: res.data.storyCollectionSize,
-      userCollectionSize: res.data.userCollectionSize });
+      userCollectionSize: res.data.userCollectionSize }));
     }).catch(err => console.log(err));
     
     // Store storyObj in state
@@ -28,18 +32,6 @@ class AdminStatsTable extends Component {
       this.setState({ storyObj: res });
     }).catch(err => console.log(err));
   };
-
-  // componentDidUpdate(prevState) {
-  //   if(this.state !== prevState) {
-  //     this.setState({
-  //       storySize: res.data.storySize,
-  //       registeredUsers: res.data.registeredUsers,
-  //       globalWins: res.data.globalWins,
-  //       storyCollectionSize: res.data.storyCollectionSize,
-  //       userCollectionSize: res.data.userCollectionSize
-  //     })
-  //   }
-  // }
   
   render() {
   return (
@@ -51,23 +43,23 @@ class AdminStatsTable extends Component {
         </tr>
         <tr>
           <td>Story Length</td>
-          <td>{ this.state.storySize }</td>
+          <td>{ this.props.storySize + " Parts" }</td>
         </tr>
         <tr className="pure-table-odd">
           <td>Registerd Users</td>
-          <td>{ this.state.registeredUsers }</td>
+          <td>{ this.props.registeredUsers + " User(s)"}</td>
         </tr>
         <tr>
           <td>Global Wins</td>
-          <td>{ this.state.globalWins }</td>
+          <td>{ this.props.globalWins }</td>
         </tr>
         <tr className="pure-table-odd">
           <td>Game Storage</td>
-          <td>{ this.state.storyCollectionSize + " bytes"}</td>
+          <td>{ this.props.storyCollectionSize + " bytes"}</td>
         </tr>
         <tr>
           <td>User Storage</td>
-          <td>{ this.state.userCollectionSize + " bytes"}</td>
+          <td>{ this.props.userCollectionSize + " bytes"}</td>
         </tr>
       </tbody>
     </table>
