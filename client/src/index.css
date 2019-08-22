@@ -44,3 +44,10 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   }
+
+  p {
+    font-family: 'Cormorant SC', serif;
+    color: rgb(68, 65, 65);
+    font-size: 35px;
+    text-align: center;
+  }
