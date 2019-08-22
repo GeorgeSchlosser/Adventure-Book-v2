@@ -1,10 +1,11 @@
 import React from "react";
+import "./style.css";
 
 function Nav() {
   return (
-    <div className="pure-menu pure-menu-horizontal nav">
-      <a className="pure-menu-heading">
-        Adventure Book
+    <div className="pure-menu pure-menu-horizontal nav adv-nav">
+      <a href="/" className="pure-menu-heading">
+        AdventureBook
       </a>
       <ul className="pure-menu-list">
         <li className="pure-menu-item">
