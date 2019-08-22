@@ -1,13 +1,19 @@
 import cytoscape from 'cytoscape';
 
-export default (seeds, layout, zoomOpt) => {
+export default (seeds, layout, zoomOpt, curveStyle) => {
 
 if(!layout) {
-    layout = "breadthfirst"
+    layout = "breadthfirst";
 }
 
 if(!zoomOpt) {
     zoomOpt = false;
+}
+
+if(curveStyle && (layout === "breadthfirst")) {
+    curveStyle = "taxi";
+} else {
+    curveStyle = null;
 }
 
 var graphElements = [];
@@ -82,8 +88,8 @@ var graphElements = [];
 
         container: document.getElementById("cy"), // container to render within
         zoom: (0.5),
-        minZoom: (2.0),
-        maxZoom: (0.25),
+        minZoom: 0.2,
+        maxZoom: 3,
         userZoomingEnabled: zoomOpt,
         elements: graphElements,
 
@@ -105,14 +111,15 @@ var graphElements = [];
                 "target-arrow-color": "#fff",
                 "target-arrow-shape": "triangle",
                 "mid-target-arrow-shape": "vee",
-                "arrow-scale": 3
+                "arrow-scale": 3,
+                "curve-style": curveStyle
             }
         }
         ],
 
         // Node layout options
         "layout": {
-            "name": layout, //breadthfirst
+            "name": layout, //default: breadthfirst
             "fit": true,
             "directed": true,
             "animate": false,

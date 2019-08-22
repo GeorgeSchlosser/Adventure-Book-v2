@@ -22,6 +22,8 @@ class AdminUploadButton extends Component {
             result: "Set my state first!"
         }
 
+        this.result = 
+
         this.onClickHandler = this.onClickHandler.bind(this);
     }
 
@@ -33,9 +35,9 @@ class AdminUploadButton extends Component {
         var file = this.props.selectedFile;
         var reader = new FileReader();
         var storyjson;
-        var resultMessage = "state didnt set!";
+        var resultMessage = "Process completed! See console logs for further details";
         const formData = new FormData();
-        
+
         formData.append('firstFile', this.props.selectedFile);
 
         reader.onload = function(e) {
@@ -46,26 +48,33 @@ class AdminUploadButton extends Component {
             } else {
                 console.log("valid json!");
                 storyjson = JSON.parse(text);
-                fetch("/api/seed/12345", {
-                    method: 'POST',
-                    body: text,
-                    headers:{
-                      'Content-Type': 'application/json'
+                if(storyjson) {
+                    if("story" in storyjson){
+                        fetch("/api/seed/12345", {
+                            method: 'POST',
+                            body: text,
+                            headers:{
+                              'Content-Type': 'application/json'
+                            }
+                          }).then(response => { 
+                              console.log('Success:', response);
+                              resultMessage = "Upload Successful!"  
+                            })
+                          .catch(error => { 
+                              console.error('Error:', error);
+                            //   resultMessage = "Error";
+                            //   this.setState({ result: "Error!"})
+                            }
+                        );
+                    } else {
+                        console.log("There is a problem with the format of the uploaded file. Please refer to documentation");
                     }
-                  }).then(response => { 
-                      console.log('Success:', response);
-                      this.setState({ result: "success!"})
-                    })
-                  .catch(error => { 
-                      console.error('Error:', error);
-                      resultMessage = "Error";
-                    }
-                );
+                }
             }
         }
 
         reader.readAsText(file);
-        this.setState({ done: true, result: resultMessage });
+        this.setState({ done: true, selectedFile: null, result: resultMessage });
     }
 
     render() {

@@ -1,8 +1,13 @@
+/* Resetting CSS */
+
 /* Imoprt for PureCSS Library */
 @import url("https://unpkg.com/purecss@1.0.1/build/pure-min.css");
 
 .AdminDiv {
     margin: 2em;
+    /* background-color: white; */
+    position: absolute;
+    width: 95%;
 }
 .pure-button {
     margin: 1em auto;

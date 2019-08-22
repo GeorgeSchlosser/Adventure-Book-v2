@@ -26,7 +26,7 @@ class AdminModal extends Component {
         >
         {close => (
           <div className="modal">
-            <a className="close" onClick={ () => close() }> &times; </a>
+            <a className="close" onClick={ () => close() } href="#"> &times; </a>
             <div className="header"> { this.props.header } </div>
             <div className="content">{ this.props.children }</div>
             <div className="actions">
