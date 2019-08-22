@@ -10,6 +10,20 @@ body {
   background-color: rgb(68, 65, 65);
 }
 
+.home-image {
+  background-image: url("./images/partial.png");
+  height: 650px;
+  
+  border: 0%;
+  margin: 0%;
+}
+
+.home-title {
+  display: inline-block;
+  text-align: center;
+  font-size: 42px;
+}
+
 .centered-form {
   width: 40%;
   margin: auto;

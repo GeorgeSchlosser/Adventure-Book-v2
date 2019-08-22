@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import Nav from "./components/Nav/Nav"
 import Register from "./components/RegisterLogin/Register";
 import Login from "./components/RegisterLogin/Login";
+import Home from "./components/Home/Home";
 import AdminDiv from "./components/AdminDiv";
 import Story from "./components/Story"
 
@@ -13,7 +14,7 @@ class App extends Component {
      <div className="App">
         <Nav />
         <Switch>
-          <Route exact path ="/" component = { Story } />
+          <Route exact path ="/" component = { Home } />
           <Route exact path ="/story" component = { Story } />
           <Route path = "/login" component = { Login } />
           <Route path = "/register" component = { Register } />
