@@ -90,7 +90,7 @@ class Login extends Component {
             type="password"
             placeholder="Password"
           />
-          <button className="pure-button pure-button-primary" onClick={this.handleFormSubmit}>Submit</button>
+          <button className="pure-button" id="hateThisButton" onClick={this.handleFormSubmit}>Submit</button>
         </form>
         <p>
           {this.state.notFound}
