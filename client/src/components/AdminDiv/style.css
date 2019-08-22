@@ -1,6 +1,10 @@
 /* Imoprt for PureCSS Library */
 @import url("https://unpkg.com/purecss@1.0.1/build/pure-min.css");
 
+body {
+    color: #646C42;
+}
+
 .AdminDiv {
     margin: 2em;
 }
