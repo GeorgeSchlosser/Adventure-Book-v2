@@ -1,5 +1,6 @@
 # Adventure-Book-v2
 A MERN-based Choose-Your-Own-Adventure web application that strives to engage the reader.
+Deployed Link: http://adventure-book-v2.herokuapp.com/
 
 ## Table of Contents
 * [Prerequisites](#prerequisites)
